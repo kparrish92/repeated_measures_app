@@ -24,6 +24,7 @@ ui <- fluidPage(
         sidebarPanel(
           p("This purpose of this app is to test whether a given mean, standard deviation, and number of tokens are sufficient (at a power level of .8)
             to produce a sample that is within a small effect size (d = +/- .4) of an assumed underlying distrubution.
+            In this case, 'token' refers to a single repetition of a given condition in a repeated measures experiment.
             While this app was created with phonetic research in mind, it can be used to any type of research in which repeated measures are used!"),
             numericInput('mean_input', 'Mean', 10, min = 0, max = Inf),
             numericInput('sd_input', 'Standard Deviation', 2, min = 0, max = Inf),
@@ -69,11 +70,10 @@ server <- function(input, output) {
           
           
           for (i in 1:1000) {
-            
             sample_df = sampling %>%
               sample_n(number_stim) %>%
               mutate(df = "sample") 
-            
+    
             data_tost = rbind(sampling, sample_df)
             
             t_e = TOSTER::dataTOSTtwo(

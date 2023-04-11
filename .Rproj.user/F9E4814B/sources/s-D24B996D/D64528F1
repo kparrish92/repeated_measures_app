@@ -3,7 +3,7 @@
     "path": "~/Documents/GitHub/repeated_measures_app/gg/app.R",
     "project_path": "gg/app.R",
     "type": "r_source",
-    "hash": "0",
+    "hash": "1449026162",
     "contents": "",
     "dirty": false,
     "created": 1681247294854.0,
@@ -12,15 +12,15 @@
     "properties": {
         "source_window_id": "",
         "Source": "Source",
-        "cursorPosition": "69,10",
-        "scrollLine": "7"
+        "cursorPosition": "26,119",
+        "scrollLine": "20"
     },
     "folds": "",
-    "lastKnownWriteTime": 1681247139,
+    "lastKnownWriteTime": 1681249741,
     "encoding": "UTF-8",
     "collab_server": "",
     "source_window": "",
-    "last_content_update": 1681247139,
+    "last_content_update": 1681249741802,
     "read_only": false,
     "read_only_alternatives": []
 }
