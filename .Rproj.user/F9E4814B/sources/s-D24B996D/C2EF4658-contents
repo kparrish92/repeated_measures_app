@@ -17,26 +17,29 @@ ui <- fluidPage(
   
 
     # Application title
-    titlePanel("Repeated Measures App"),
+    titlePanel("How many tokens do I need?"),
 
     # Sidebar with a slider input for number of bins 
     sidebarLayout(
         sidebarPanel(
+          p("This purpose of this app is to test whether a given mean, standard deviation, and number of tokens are sufficient (at a power level of .8)
+            to produce a sample that is within a small effect size (d = +/- .4) of an assumed underlying distrubution.
+            While this app was created with phonetic research in mind, it can be used to any type of research in which repeated measures are used!"),
             numericInput('mean_input', 'Mean', 10, min = 0, max = Inf),
             numericInput('sd_input', 'Standard Deviation', 2, min = 0, max = Inf),
-            numericInput('n_input', 'Number of tokens', 2, min = 0, max = Inf),
+            sliderInput("n_input", "Number of tokens", min = 1, max = 200, value = 15),
             submitButton("Submit"),
             br(),
             p(strong("Created by:"), 
               tags$a("Kyle Parrish", href="https://kparrish92.github.io"),
               br(), strong("Source code:"), 
-              tags$a("Github", href="google.com"))
+              tags$a("Github", href="https://github.com/kparrish92/repeated_measures_app"))
         ),
         
         # Show a plot of the generated distribution
         mainPanel(
           withSpinner(plotOutput("distPlot")),
-          p("NOTE: The initial loading bar is will not finish loading. 
+          p("NOTE: Each time SUBMIT is pressed, the new plot takes up to 2 minutes to load. 
             Input a MEAN, STANDARD DEVIATION and NUMBER OF TOKENS.
             Essentially, this app runs a power analysis 10 times.
             The app simulates an underlying distribution and randomly samples 
@@ -45,7 +48,8 @@ ui <- fluidPage(
             Equivelance (bounds +/- d = .4). Then, the quantity of significant 
             equivalence tests are added. This process was repeated 10 times and plotted.
             If the power was at least .8 in all 10 power analyses, the boxplot will fall
-            to the right of the dashed line. If it does not, you need more tokens!")
+            to the right of the dashed line. If it does not, you need more tokens!"),
+          p(strong("This application was created in tandem with a paper from ICPhs 2023 in Prague"))
         )
     )
 )
@@ -135,16 +139,13 @@ server <- function(input, output) {
           summarize(n = sum(sig_tost)) %>%
           ggplot(aes(y = as.factor(n_actual), x = as.numeric(n)), 
                  fill = n_actual) +
-          geom_boxplot(outlier.size = 0, fill="orange") +
+          geom_boxplot(outlier.size = 0, fill = "orange") +
           ylab("tokens") + xlab("Statistical Power") +
           xlim(0,100) +
           geom_vline(xintercept = 80, linetype = "dashed", alpha = .4) +
           theme_minimal() +
+          ggtitle("Box plot of the results of 10 power analyses") +
           theme(text = element_text(size = 20))
-        
-        df %>%
-          group_by(test_no, n_actual) %>%
-          summarize(n = sum(sig_tost))
     })
   }
 

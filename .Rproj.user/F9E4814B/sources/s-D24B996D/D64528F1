@@ -1,26 +1,26 @@
 {
-    "id": "C2EF4658",
+    "id": "D64528F1",
     "path": "~/Documents/GitHub/repeated_measures_app/gg/app.R",
     "project_path": "gg/app.R",
     "type": "r_source",
     "hash": "0",
     "contents": "",
     "dirty": false,
-    "created": 1681161644081.0,
+    "created": 1681247294854.0,
     "source_on_save": false,
-    "relative_order": 4,
+    "relative_order": 1,
     "properties": {
         "source_window_id": "",
         "Source": "Source",
-        "cursorPosition": "30,71",
-        "scrollLine": "19"
+        "cursorPosition": "69,10",
+        "scrollLine": "7"
     },
     "folds": "",
-    "lastKnownWriteTime": 1681245290,
+    "lastKnownWriteTime": 1681247139,
     "encoding": "UTF-8",
     "collab_server": "",
     "source_window": "",
-    "last_content_update": 1681245290367,
+    "last_content_update": 1681247139,
     "read_only": false,
     "read_only_alternatives": []
 }
