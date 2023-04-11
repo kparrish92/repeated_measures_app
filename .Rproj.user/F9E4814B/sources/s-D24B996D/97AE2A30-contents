@@ -1,0 +1,39 @@
+library(tidyverse)
+ul_dist = data.frame(k = rnorm(n = 100, mean = 50, 
+                               sd = 10)) %>%
+  mutate(df = "sampling")
+
+df = sample_function(ul_dist, 10) %>% 
+  as.data.frame()
+
+df = sample_function(ul_dist, 10) %>% 
+  as.data.frame() %>% 
+  rename("tost" = V1,
+         "t_test" = V2,
+         "mean_actual" = V3,
+         "mean_sample" = V4,
+         "sd_actual" = V5,
+         "sd_sample" = V6,
+         "n_actual" = V7,
+         "n_sample" = V8,
+         "iteration" = V9) %>%
+  mutate(sig_tost = case_when(
+    tost < .05 ~ 1,
+    tost > .05 ~ 0,
+  )) %>%
+  mutate(sig_ttest = case_when(
+    t_test < .05 ~ 1,
+    t_test > .05 ~ 0,
+  )) %>%
+  mutate(tost = round(as.numeric(tost), digits = 3)) %>%
+  mutate(t_test = round(as.numeric(tost), digits = 3)) %>%
+  mutate(mean_difference = round(as.numeric(mean_actual) -
+                                   as.numeric(mean_sample), digits = 3)) %>%
+  mutate(test_no = rep(1:10, each = 100))
+
+
+
+
+c = df %>%
+  group_by(test_no, n_actual) %>%
+  summarize(n = sum(sig_tost)) 
