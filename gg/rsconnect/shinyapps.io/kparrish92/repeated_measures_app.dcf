@@ -5,9 +5,9 @@ account: kparrish92
 server: shinyapps.io
 hostUrl: https://api.shinyapps.io/v1
 appId: 8823523
-bundleId: 7077196
+bundleId: 7077342
 url: https://kparrish92.shinyapps.io/repeated_measures_app/
-when: 1681247448.62836
-lastSyncTime: 1681247448.62838
+when: 1681249792.5302
+lastSyncTime: 1681249792.53021
 asMultiple: FALSE
 asStatic: FALSE
