@@ -88,7 +88,7 @@ server <- function(input, output) {
             tost = t_e$tost$asDF
             desc = t_e$desc$asDF
             
-            power_df[i, 1] = min(tost$`p[1]`, tost$`p[2]`) # p value tost
+            power_df[i, 1] = max(tost$`p[1]`, tost$`p[2]`) # p value tost
             power_df[i, 2] = tost$`p[0]`# p value t-test
             power_df[i, 3] = desc$`m[1]`# mean 1 (actual)
             power_df[i, 4] = desc$`m[2]`# mean 2 (sample)
